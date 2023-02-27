@@ -33,7 +33,7 @@ def get_log():
         os.remove('../xft_case/data/result.text')
     Login = LoginPage()
     yield Login
+    Login.driver.quit()
     nub = 0
     file = '../xft_case/data/result.text'
     Rewrite_Excel().re_excel(filename, nub,file)
-    Login.driver.quit()
