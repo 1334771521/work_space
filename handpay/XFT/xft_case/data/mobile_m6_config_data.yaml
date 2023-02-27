@@ -1,0 +1,11 @@
+appActivity: com.handpay.nocardpay.baselibrary.guide.view.activity.WelcomeActivity
+appPackage: com.handpay.xftong
+automationName: uiautomator2
+deviceName: 6a80da91
+noReset: true
+platformName: Android
+platformVersion: 7.1.1
+resetKeyboard: true
+settings[waitForIdleTimeout]: 0
+skipDeviceInitialization: 'True'
+unicodeKeyboard: true
