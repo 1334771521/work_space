@@ -13,11 +13,7 @@ androidInstallTimeout: 0
 appWaitDuration: 0
 deviceReadyTimeout: 0
 androidDeviceReadyTimeout: 0
-avdLaunchTimeoutavd: 0
-avdReadyTimeout: 0
 autoWebviewTimeout: 0
 uiautomator2ServerLaunchTimeout: 0
-espressoServerLaunchTimeout: 0
-launchTimeout: 0
 interKeyDelay: 0
-screenshotWaitTimeout: 0
+launchTimeout: 0

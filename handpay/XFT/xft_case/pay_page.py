@@ -24,7 +24,6 @@ class PayPage(BaseDriver):
             self._opter_context(data)
         self.find(data[-1][0],data[-1][1])
         result = assert_info.view_info(self.driver)
-        # sleep(1)
         return self._opter_page(result,data)
 
     def _opter_context(self,data):
