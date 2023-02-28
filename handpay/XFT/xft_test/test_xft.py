@@ -2,11 +2,10 @@
 # @Ahthor: zchen
 # @Time: 2023/1/31 16:04
 # @File: xft_test
-import pytest
+
 import allure
 
 from XFT.xft_case.data_handle import handle_data
-
 
 @allure.feature('交易测试！')
 class TestXft():

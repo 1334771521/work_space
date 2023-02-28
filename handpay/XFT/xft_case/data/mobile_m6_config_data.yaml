@@ -9,7 +9,7 @@ resetKeyboard: true
 settings[waitForIdleTimeout]: 0
 skipDeviceInitialization: 'True'
 unicodeKeyboard: true
-androidInstallTimeout: 0
+androidInstallTimeout : 0
 appWaitDuration: 0
 deviceReadyTimeout: 0
 androidDeviceReadyTimeout: 0
