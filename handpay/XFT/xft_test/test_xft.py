@@ -34,8 +34,3 @@ class TestXft():
             else:
                 f.write(f'{ass+"测试失败"}\n')
         assert   Expected in ass
-
-
-
-# if __name__=='__main__':
-#     pytest.main(["-sv","test_xft.py","-n=2"])
