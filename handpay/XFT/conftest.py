@@ -20,7 +20,7 @@ def pytest_collection_modifyitems(items):
         item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
 
 # filename = r'../xft_case/common/数据1.xlsx'
-filename = r'C:\Users\交易数据.xlsx'
+filename = r'C:\Users\Public\交易数据.xlsx'
 nub = 0
 data = ReadXlsx().get_data(filename, nub)
 @pytest.fixture(params=data[0],ids=data[1])
@@ -37,3 +37,4 @@ def get_log():
     nub = 0
     file = '../xft_case/data/result.text'
     Rewrite_Excel().re_excel(filename, nub,file)
+
