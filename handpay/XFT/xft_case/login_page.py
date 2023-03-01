@@ -18,11 +18,6 @@ class LoginPage(BaseDriver):
                 list(map(self.find,_ele_data))
             except Exception:
                 list(map(self.find,_ele_data[1:]))
-            # try:
-            #     self.driver.find_elements_by_class_name('android.widget.ImageView')
-            #     self._back_login()
-            # except Exception:
-            #     pass
             if len(data) <=5:
                 return self._opter_page()
         except  Exception as e:

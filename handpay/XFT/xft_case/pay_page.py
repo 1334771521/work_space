@@ -43,4 +43,7 @@ class PayPage(BaseDriver):
             for re in result:
                 return re.text
         else:
-            return '支付完成！'
+            result = self.find('xpath','/html/body/div[1]/div/span')
+            self.driver.back()
+            return result
+
