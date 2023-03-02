@@ -1,36 +1,24 @@
 import openpyxl
 
-class ReadXlsx():
 
-    def get_data(self,filename,nub):
+class ReadXlsx():
+    '''
+    1.excel表格数据的读取
+    2.读取 H 和 I 两列的数据
+    '''
+
+    def get_data(self, filename, nub):
         '''
         :param filename:      需要读取的文件
         :param nub:           要读取的第几张表
-        :return:
+        :return: 数据和预期结果组合的列表
         '''
         wook = openpyxl.load_workbook(filename)
         sheet = wook.worksheets[nub]
-        value1 = sheet['H']
-        value2 = sheet['I']
-        data = [eval(s.value) for s in value1[1:]]
-        data1 = [s.value for s in value2[1:] ]
-        return list(zip(data, data1)),data1
-
-# filename = r'数据1.xlsx'
-# nub = 0
-# print(ReadXlsx().get_data(filename,nub))
-
-
-# filename = r'C:\Users\zchen\Desktop\新建文件夹\商户数据1.xlsx'
-# ws = openpyxl.load_workbook(filename)
-# # 根据下标获取工作表的名称
-# # sheet = ws.sheetnames[1]
-# # print(sheet)
-# # sheet = ws[sheet]
-# sheet = ws.worksheets[1]
-#
-# # 按行遍历
-# for row in sheet:  # 循环获取表数据
-#     for cell in row:  # 循环获取每个单元格的数据
-#         print(cell.value,end = ',')
-#     print()
+        h_value = sheet['H']
+        i_value = sheet['I']
+        g_value = sheet['G']
+        data = [eval(s.value) for s in h_value[1:]]
+        expected_results = [s.value for s in i_value[1:]]
+        operation_module = [s.value for s in g_value[1:]]
+        return list(zip(data, expected_results)),operation_module
