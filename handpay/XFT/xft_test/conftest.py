@@ -43,7 +43,7 @@ def set_data():
     4.关闭driver
     5.调用复写模块，把断言数据写入测试用例文件
     '''
-    file = '../xft_case/data/result.text'
+    file = '../../xft_case/data/result.text'
     if os.path.exists(file):
         os.remove(file)
     Login = LoginPage()
