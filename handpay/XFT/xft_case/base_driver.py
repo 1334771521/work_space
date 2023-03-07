@@ -43,7 +43,7 @@ class BaseDriver():
                  'link': MobileBy.LINK_TEXT, 'xpath': MobileBy.XPATH}
         if el != '':
             by, el, value = by, el, value
-        elif el == '' and value == '' and len(by) == 3:
+        elif el == '' and len(by) == 3:
             by, el, value = by
         elif el == '' and len(by) == 2:
             by, el = by

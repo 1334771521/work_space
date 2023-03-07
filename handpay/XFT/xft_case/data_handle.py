@@ -15,7 +15,7 @@ def handle_data(data):
     :return: 定位元素和值组合的列表嵌套的数据
     '''
     _order = [1, 3, 5, 9, 11, 12, 13, 15]
-    _long = {2: 5, 3: 9, 4: 11, 8: 18}
+    _long = {2: 5, 3: 9, 4: 11, 8: 19}
     with open('../xft_case/data/ele_data.yaml', 'r') as f:
         _ele_data = yaml.safe_load(f)
 

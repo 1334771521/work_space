@@ -15,9 +15,9 @@ def _get_alert_info(driver):
     try:
         message = driver.find_element(MobileBy.ID, 'android:id/message').text
         driver.find_element(MobileBy.ID, 'android:id/button1').click()
-        return message
     except Exception:
-        pass
+        message = ''
+    return message
 
 
 def _get_toast_info(driver):
@@ -28,9 +28,9 @@ def _get_toast_info(driver):
     '''
     try:
         toast_text = driver.find_element(MobileBy.XPATH, '//*[@class=\"android.widget.Toast\"]').text
-        return toast_text
     except Exception:
-        pass
+        toast_text = ''
+    return toast_text
 
 
 def view_info(driver):
@@ -40,7 +40,7 @@ def view_info(driver):
     :return: H5页面的提示语
     '''
     try:
-        result = driver.find_elements_by_xpath('/html/body/div[4]')
-        return result
+        results = driver.find_elements_by_xpath('/html/body/div[4]')
     except Exception:
-        pass
+        results = ''
+    return results

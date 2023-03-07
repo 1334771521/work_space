@@ -4,7 +4,7 @@ import openpyxl
 class ReadXlsx():
     '''
     1.excel表格数据的读取
-    2.读取 H 和 I 两列的数据
+    2.读取 G 、H 和 I 三列的数据
     '''
 
     def get_data(self, filename, nub):

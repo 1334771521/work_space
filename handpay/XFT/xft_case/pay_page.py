@@ -30,6 +30,7 @@ class PayPage(BaseDriver):
         3.点击确认按钮
         4.获取页面报错信息
         :param data: 定位数据，包含定位元素和定位方式
+        :param results: 获取交易页面提示数据
         :return: 返回断言数据
         '''
         try:
@@ -38,41 +39,44 @@ class PayPage(BaseDriver):
         except Exception:
             pass
         self._opter_context(data)
-        self.find(data[-1][0], data[-1][1])
+        self.find(data[-2][0], data[-2][1])
         try:
-            result = assert_info.view_info(self.driver)
+            results = assert_info.view_info(self.driver)
         except Exception as e:
-            result = ''
-        return self._opter_page(result, data)
+            results = ''
+        return self._opter_page(results, data)
 
     def _opter_context(self, data):
         '''
-        1.获取支付页面元素，如果能获取，则不用切换h5页面，如果不能获取则切换到h5页面
+        1.切换到h5页面
         2.刷新h5页面，方便下次输入
         3.进行页面数据的输入
         :param data: 定位数据，包含定位元素和定位方式
         :return: 无
         '''
-        try:
-            self.driver.find_element_xpath(data[-2][1])
-        except Exception:
-            self._switch_context()
+        self._switch_context()
         self.driver.refresh()
         list(map(self.find, data[11:17]))
 
-    def _opter_page(self, result, data):
+    def _opter_page(self, results, data):
         '''
         1.获取支付页面元素，如果能获取，则返回页面报错信息，否则切换到下一个h5页面，获取页面信息，返回断言信息
-        :param result:  返回报错信息
+        :param results:  返回报错信息
         :param data: 定位数据，包含定位元素和定位方式
+        :param result: 支付页面的支付结果，赋初始值为空字符串
         :return: 返回断言数据
         '''
+        result = ''
         try:
-            self.driver.find_element_xpath(data[-2][1])
-            for re in result:
-                return re.text
+            self.driver.find_elements_by_xpath(data[-2][1])
         except Exception:
             self.driver.switch_to.window(self.driver.window_handles[-1])
-            result = self.find('xpath', '/html/body/div[1]/div/span')
+            try:
+                result = self.find(data[-1][0], data[-1][1])
+            except Exception as e:
+                pass
             self.driver.back()
-            return result
+        if results:
+            for re in results:
+                result = re.text
+        return result

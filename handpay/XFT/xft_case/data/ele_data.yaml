@@ -34,3 +34,5 @@
   - //*[@id="weuiAgree"]
 - - xpath
   - //*[@id="submitBtn"]
+- - xpath
+  - /html/body/div[1]/div/span
