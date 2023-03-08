@@ -22,30 +22,26 @@ class SetCard(BaseDriver):
         :return: 断言或者下一个模块的对象
         '''
         try:
-            list(map(self.find, data[5:11]))
-        except Exception:
             try:
-                list(map(self.find, data[9:11]))
+                list(map(self.find, data[5:11]))
             except Exception:
-                pass
+                list(map(self.find, data[9:11]))
+        except Exception:
+            pass
         if len(data) <= 11:
-            return self._opter_page(data)
+            return self._opter_page()
         return PayPage(self.driver)
 
-    def _opter_page(self, data):
+    def _opter_page(self):
         '''
         1.调用弹出框方法，关闭弹出框并获取弹出框提示语
-        2.如果当前页面是设置卡号页面，则不返回，否则返回到上一个页面
-        3.如果弹出框提示语不为空，则返回弹出框提示语，否则返回"设置卡号成功"
+        2.如果弹出框提示语不为空，则返回弹出框提示语，否则返回"设置卡号成功"
         :param data: 页面定位数据和需要输入的值
         :return: 断言
         '''
         result = assert_info._get_alert_info(self.driver)
-        try:
-            self.driver.find_element_by_id(data[10][1])
-        except Exception:
-            self.driver.back()
         if result:
             return result
         else:
+            self.driver.back()
             return '设置卡号成功'

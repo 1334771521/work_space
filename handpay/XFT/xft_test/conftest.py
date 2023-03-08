@@ -20,12 +20,14 @@ def pytest_collection_modifyitems(items):
         item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
 
 
+# filename测试用例的文件
+# file为测试结果的文件
 filename = r'C:\Users\Public\交易数据.xlsx'
+file = '../xft_case/data/result.text'
 nub = 0
 data = ReadXlsx().get_data(filename, nub)
 
-
-@pytest.fixture(params=data[0],ids=data[1])
+@pytest.fixture(params=data[0], ids=data[1])
 def get_data(request):
     '''
     数据驱动，把测试数据传递给测试函数，执行测试用例
@@ -43,11 +45,9 @@ def set_data():
     4.关闭driver
     5.调用复写模块，把断言数据写入测试用例文件
     '''
-    file = '../xft_case/data/result.text'
     if os.path.exists(file):
         os.remove(file)
     Login = LoginPage()
-    yield Login
+    yield Login,file
     Login.driver.quit()
-    nub = 0
     Rewrite_Excel().re_excel(filename, nub, file)

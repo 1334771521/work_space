@@ -40,10 +40,7 @@ class PayPage(BaseDriver):
             pass
         self._opter_context(data)
         self.find(data[-2][0], data[-2][1])
-        try:
-            results = assert_info.view_info(self.driver)
-        except Exception as e:
-            results = ''
+        results = assert_info.view_info(self.driver)
         return self._opter_page(results, data)
 
     def _opter_context(self, data):
@@ -68,13 +65,12 @@ class PayPage(BaseDriver):
         '''
         result = ''
         try:
-            self.driver.find_elements_by_xpath(data[-2][1])
-        except Exception:
-            self.driver.switch_to.window(self.driver.window_handles[-1])
             try:
+                self.driver.find_elements_by_xpath(data[-2][1])
+            except Exception:
+                self.driver.switch_to.window(self.driver.window_handles[-1])
                 result = self.find(data[-1][0], data[-1][1])
-            except Exception as e:
-                pass
+        except Exception:
             self.driver.back()
         if results:
             for re in results:

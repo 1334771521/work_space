@@ -9,16 +9,16 @@ class ReadXlsx():
 
     def get_data(self, filename, nub):
         '''
+        1. data为测试数据
+        2. expected_results为测试的预期结果
+        3. operation_module为测试模块名
         :param filename:      需要读取的文件
         :param nub:           要读取的第几张表
-        :return: 数据和预期结果组合的列表
+        :return: 测试数据、预期结果和测试模块名称组合的列表
         '''
         wook = openpyxl.load_workbook(filename)
         sheet = wook.worksheets[nub]
-        h_value = sheet['H']
-        i_value = sheet['I']
-        g_value = sheet['G']
-        data = [eval(s.value) for s in h_value[1:]]
-        expected_results = [s.value for s in i_value[1:]]
-        operation_module = [s.value for s in g_value[1:]]
+        data = [eval(s.value) for s in sheet['H'][1:]]
+        expected_results = [s.value for s in sheet['I'][1:]]
+        operation_module = [s.value for s in sheet['G'][1:]]
         return list(zip(data, expected_results)),operation_module

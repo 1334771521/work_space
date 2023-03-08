@@ -19,8 +19,8 @@ class TestXft():
 
     @allure.story('交易流程测试！')
     def test_login(self, set_data, get_data):
+        self.Login, file = set_data
         data, Expected = get_data
-        self.Login = set_data
         _ele_datas = handle_data(data)
         if len(data) == 2:
             with allure.step('登录测试！'):
@@ -34,7 +34,7 @@ class TestXft():
         elif len(data) == 8:
             with allure.step('交易测试！'):
                 ass = self.Login.login_xft(_ele_datas).set_amount(_ele_datas).set_card(_ele_datas).pay_page(_ele_datas)
-        with open('../xft_case/data/result.text', 'a', encoding='utf-8') as f:
+        with open(file, 'a', encoding='utf-8') as f:
             if Expected in ass:
                 f.write(f'{ass}\n')
             else:

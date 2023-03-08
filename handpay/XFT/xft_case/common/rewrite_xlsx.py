@@ -18,10 +18,7 @@ class Rewrite_Excel():
         :return:  无
         '''
         wb = openpyxl.load_workbook(filename)
-        # 得到sheet对象
-        # sheet1 = wb.sheetnames[1]       # 以下标获取表名
-        # sheet = wb[sheet1]              # 以表名定位表对象
-        sheet = wb.worksheets[nub]  # 以下标定位表对象
+        sheet = wb.worksheets[nub]
         with open(file, 'r', encoding='utf-8') as f:
             datas = f.read()
         datas = datas.split('\n')[:-1]

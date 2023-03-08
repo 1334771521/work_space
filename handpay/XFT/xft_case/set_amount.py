@@ -23,7 +23,8 @@ class SetAmount(BaseDriver):
         '''
         _ele_data = data[5:9]
         if len(data) <= 9:
-            return self._opter_page(_ele_data)
+            list(map(self.find, _ele_data[:-1]))
+            return self._opter_page()
         else:
             try:
                 list(map(self.find, _ele_data))
@@ -31,15 +32,13 @@ class SetAmount(BaseDriver):
                 pass
         return SetCard(self.driver)
 
-    def _opter_page(self, _ele_data):
+    def _opter_page(self):
         '''
         1.进行设置金额页面的操作
         2.调用弹出框的处理方法，关闭弹出框并获取弹出框的提示语
         3.如果弹出框有值，则返回该值，如果没有值，则返回上一页并返回"设置金额成功"
-        :param data: 页面定位数据和需要输入的值
         :return: 断言
         '''
-        list(map(self.find, _ele_data[:-1]))
         result = assert_info._get_alert_info(self.driver)
         if result:
             return result

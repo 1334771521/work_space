@@ -4,6 +4,9 @@
 # @File: assert_info
 
 from appium.webdriver.common.mobileby import MobileBy
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 def _get_alert_info(driver):
@@ -40,6 +43,7 @@ def view_info(driver):
     :return: H5页面的提示语
     '''
     try:
+        WebDriverWait(driver, 2, 0.5).until(EC.visibility_of_element_located((By.XPATH, '/html/body/div[4]')))
         results = driver.find_elements_by_xpath('/html/body/div[4]')
     except Exception:
         results = ''
